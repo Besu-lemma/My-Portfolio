@@ -3,44 +3,49 @@ import { CalendarDays, MapPin, Briefcase } from "lucide-react";
 const Experience = () => {
   const experiences = [
     {
-      title: "Senior Full-Stack Developer",
-      company: "TechCorp Solutions",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
-      description: "Leading development of scalable web applications using MERN stack. Mentoring junior developers and architecting microservices solutions.",
+      title: "Front-End Developer",
+      company: "Rago Software Solutions",
+      location: "Addis Abeba, Ethiopia",
+      period: "2024-2025",
+      description:
+        "Built a multpile dynamic product showcase website with a focus on clean UI/UX, responsive design, and optimized performance.",
       achievements: [
-        "Increased application performance by 40%",
-        "Led team of 5 developers",
-        "Implemented CI/CD pipelines"
+        "Improved UI/UX and responsiveness across devices, leading to enhanced user engagement",
+        "Optimized performance and loading speed through efficient coding and resource management",
+        "Collaborated using Git in a team-based development environment",
+        "Followed agile workflows to deliver features iteratively and efficiently",
       ],
-      technologies: ["React", "Node.js", "AWS", "Docker", "TypeScript"]
+
+      technologies: ["React", "Next js", "Tailwind css", "CMS", "TypeScript"],
     },
     {
       title: "Full-Stack Developer",
-      company: "StartupHub Inc",
-      location: "Remote",
-      period: "2020 - 2022",
-      description: "Developed and maintained multiple client projects, specializing in e-commerce platforms and SaaS applications.",
+      company: "Debo Engineering",
+      location: "Jimma, Ethiopia",
+      period: "2024 - 2025",
+      description:
+        "Developed and maintained multiple client projects, specializing in e-commerce platforms.",
       achievements: [
-        "Built 15+ production applications",
+        "Built 5+ production applications",
         "Reduced deployment time by 60%",
-        "Improved code quality through testing"
+        "Improved code quality through testing",
       ],
-      technologies: ["React", "Express", "MongoDB", "Next.js", "Flutter"]
+      technologies: ["React", "Express", "MongoDB", "Next.js", "Flutter"],
     },
     {
-      title: "Frontend Developer",
-      company: "WebCraft Agency",
-      location: "New York, NY",
-      period: "2019 - 2020",
-      description: "Focused on creating responsive and interactive user interfaces for various client projects across different industries.",
+      title: "Web Developer & AI Trainee",
+      company: "Jimma University AI Center",
+      location: "Jimma, Ethiopia",
+      period: "2023 - 2025",
+      description:
+        "Contributed to web-based interfaces for AI research tools and participated in foundational AI training. Assisted in building user-facing applications that support AI-related workflows and data visualization.",
       achievements: [
-        "Delivered 20+ client projects",
-        "Improved user engagement by 35%",
-        "Implemented design systems"
+        "Collaborated on UI development for internal AI tools",
+        "Built reusable components for data input and visualization",
+        "Participated in workshops on machine learning and data annotation",
       ],
-      technologies: ["React", "JavaScript", "SASS", "jQuery", "Bootstrap"]
-    }
+      technologies: ["React", "JavaScript", "Python", "Bootstrap", "Git"],
+    },
   ];
 
   return (
@@ -51,7 +56,7 @@ const Experience = () => {
             Experience
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            My professional journey and the milestones that shaped my expertise 
+            My professional journey and the milestones that shaped my expertise
             in full-stack development
           </p>
         </div>
@@ -68,7 +73,7 @@ const Experience = () => {
               >
                 {/* Timeline dot */}
                 <div className="absolute -left-12 top-8 w-4 h-4 bg-primary rounded-full border-4 border-background hidden md:block" />
-                
+
                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                   <div className="lg:flex-1">
                     <div className="flex items-start gap-3 mb-3">
@@ -77,9 +82,7 @@ const Experience = () => {
                         <h3 className="text-xl font-bold text-primary">
                           {exp.title}
                         </h3>
-                        <p className="text-lg font-semibold">
-                          {exp.company}
-                        </p>
+                        <p className="text-lg font-semibold">{exp.company}</p>
                       </div>
                     </div>
 
@@ -102,7 +105,10 @@ const Experience = () => {
                       <h4 className="font-semibold mb-2">Key Achievements:</h4>
                       <ul className="space-y-1">
                         {exp.achievements.map((achievement, i) => (
-                          <li key={i} className="text-sm text-muted-foreground flex items-start">
+                          <li
+                            key={i}
+                            className="text-sm text-muted-foreground flex items-start"
+                          >
                             <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0" />
                             {achievement}
                           </li>

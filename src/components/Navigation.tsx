@@ -25,28 +25,28 @@ const Navigation = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const id = href.replace('#', '');
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const id = href.replace("#", "");
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsMobileMenuOpen(false);
   };
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'glass backdrop-blur-lg border-b border-white/10' 
-          : 'bg-transparent'
+        isScrolled
+          ? "glass backdrop-blur-lg border-b border-white/10"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-xl font-bold gradient-text hover:scale-105 transition-transform"
             >
-              Alex.dev
+              Besu.dev
             </button>
           </div>
 
@@ -69,7 +69,7 @@ const Navigation = () => {
           {/* Theme Toggle */}
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            
+
             {/* Mobile menu button */}
             <div className="md:hidden">
               <Button

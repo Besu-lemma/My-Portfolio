@@ -5,23 +5,27 @@ const About = () => {
     {
       icon: Code,
       title: "Frontend Development",
-      description: "Expert in React, Next.js, and TypeScript for building dynamic user interfaces"
+      description:
+        "Expert in React, Next.js, and TypeScript for building dynamic user interfaces",
     },
     {
       icon: Database,
-      title: "Backend Development", 
-      description: "Proficient in Node.js, Express, and MongoDB for scalable server solutions"
+      title: "Backend Development",
+      description:
+        "Proficient in Node.js, Express, and MongoDB for scalable server solutions",
     },
     {
       icon: Smartphone,
       title: "Mobile Development",
-      description: "Creating cross-platform mobile apps with Flutter and React Native"
+      description:
+        "Creating cross-platform mobile apps with Flutter and React Native",
     },
     {
       icon: Globe,
       title: "Full-Stack Solutions",
-      description: "End-to-end development from concept to deployment and maintenance"
-    }
+      description:
+        "End-to-end development from concept to deployment and maintenance",
+    },
   ];
 
   return (
@@ -32,9 +36,9 @@ const About = () => {
             About Me
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            I'm a passionate full-stack developer with 5+ years of experience creating 
-            modern web applications. I specialize in the MERN stack and love turning 
-            complex problems into simple, beautiful solutions.
+            I'm a passionate full-stack developer with 1+ years of experience
+            creating modern web applications. I specialize in the MERN stack and
+            love turning complex problems into simple, beautiful solutions.
           </p>
         </div>
 
@@ -43,26 +47,29 @@ const About = () => {
             <h3 className="text-2xl font-semibold mb-6">My Journey</h3>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Started my journey as a self-taught developer, driven by curiosity and 
-                passion for technology. Over the years, I've worked with startups and 
-                established companies, building everything from e-commerce platforms 
-                to complex data visualization tools.
+                My interest in technology started back in high school and grew
+                stronger during my Computer Science studies at Jimma University.
+                Throughout university, I worked on real-world projects through
+                internships, academic collaborations, and hands-on learning.
               </p>
               <p>
-                I believe in writing clean, maintainable code and staying up-to-date 
-                with the latest technologies. When I'm not coding, you'll find me 
-                contributing to open source projects or mentoring fellow developers.
+                I’ve built a smart irrigation system for Ethiopian farmers with
+                support for local languages (Amharic and Afaan Oromo),
+                AI-powered recommendations, and a mobile app. I also developed a
+                product showcase site for Furtu Construction, a multilingual
+                chat app, and an exchange rate tracker currently in progress.
               </p>
               <p>
-                My goal is to create digital experiences that not only look great 
-                but also provide real value to users and businesses.
+                I earned 2nd place in a university hackathon for solving local
+                delivery challenges and continue to focus on building tech that
+                addresses real-world problems and brings impact to communities.
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {highlights.map((item, index) => (
-              <div 
+              <div
                 key={index}
                 className="glass p-6 rounded-xl hover-lift group"
               >

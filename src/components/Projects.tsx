@@ -153,7 +153,12 @@ const Projects = () => {
           <Button
             variant="outline"
             size="lg"
-            onClick={() => window.open("https://github.com", "_blank")}
+            onClick={() =>
+              window.open(
+                "https://github.com/Besu-lemma?tab=repositories",
+                "_blank"
+              )
+            }
             className="hover-lift"
           >
             <Github className="mr-2 h-5 w-5" />

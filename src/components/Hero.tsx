@@ -157,7 +157,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-6 h-8"
             >
-              <TypewriterText text="Full-Stack Developer" delay={2000} />
+              <TypewriterText text="Full-Stack Developer" delay={100} />
             </motion.div>
 
             <motion.p
@@ -296,6 +296,8 @@ export default function Hero() {
                     src={pro}
                     alt="Profile"
                     className="shadow-2xl object-cover "
+                    loading="lazy"
+                    decoding="async"
                   />
                 </motion.div>
               </div>

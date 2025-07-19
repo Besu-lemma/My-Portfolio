@@ -163,7 +163,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="glass border-white/10"
+                      className="glass border-zinc-300 dark:border-white/10"
                       placeholder="Your name"
                     />
                     <ValidationError
@@ -186,7 +186,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="glass border-white/10"
+                      className="glass border-zinc-300 dark:border-white/10"
                       placeholder="besufikadle95@email.com"
                     />
                     <ValidationError
@@ -210,7 +210,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="glass border-white/10"
+                    className="glass border-zinc-300 dark:border-white/10"
                     placeholder="Project discussion"
                   />
                   <ValidationError
@@ -234,7 +234,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="glass border-white/10 resize-none"
+                    className="glass border-zinc-300 dark:border-white/10 resize-none"
                     placeholder="Tell me about your project..."
                   />
                   <ValidationError

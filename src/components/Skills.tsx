@@ -139,6 +139,7 @@ export default function Skills() {
       skills: [
         { name: "Node.js", level: 85 },
         { name: "Express.js", level: 85 },
+        { name: "NestJS", level: 70 },
         { name: "MongoDB", level: 80 },
         { name: "GraphQL", level: 70 },
       ],

@@ -42,7 +42,7 @@ const Projects = () => {
         "Node.js",
         "MongoDB",
       ],
-      liveUrl: "http://ethioxchange.vercel.app/Home",
+      liveUrl: "https://ethio-xchange.vercel.app/",
       githubUrl: "https://github.com/Besu-lemma/Ethio-Xchange",
       featured: false,
       isMobileApp: false,

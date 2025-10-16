@@ -182,7 +182,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
               >
                 <a
-                  href="/Besufikad Lemma_CV.pdf"
+                  href="/Besufikad Lemma _CV.pdf"
                   download
                   target="_blank"
                   rel="noopener noreferrer"

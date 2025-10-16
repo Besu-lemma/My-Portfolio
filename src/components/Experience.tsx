@@ -33,6 +33,22 @@ const Experience = () => {
       technologies: ["React", "Express", "MongoDB", "Next.js", "Flutter"],
     },
     {
+      title: "OdooERP Developer",
+      company: "GraceERP consultancy",
+      location: "Addis Ababa, Ethiopia",
+      period: "september 2025-present",
+     description:
+  "Developed and customized Odoo ERP modules to enhance business workflows, including Sales, CRM, and Inventory. Worked on both backend logic and frontend views to improve usability and automation within enterprise systems.",
+achievements: [
+  "Customized existing Odoo modules to meet client-specific requirements",
+  "Developed new models, views, and menus for business process automation",
+  "Integrated third-party APIs and enhanced reporting using QWeb and PDF templates",
+  "Contributed to debugging and performance optimization of Odoo instances",
+],
+technologies: ["Python", "Odoo", "XML", "JavaScript", "PostgreSQL", "Git"],
+
+    },
+    {
       title: "Web Developer & AI Trainee",
       company: "Jimma University AI Center",
       location: "Jimma, Ethiopia",

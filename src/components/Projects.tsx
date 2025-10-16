@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import project1 from "@/assets/project-1.jpg";
+import project1 from "@/assets/project-1.png";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.png";
@@ -17,19 +17,19 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Furtu Construction Website",
+      title: "Olana Construction Website",
       description:
-        "A dynamic website for Furtu Construction company to showcase their services and projects with a clean and professional design.",
+        "A dynamic website for Olana Construction company to showcase their services and projects with a clean and professional design.",
       image: project1,
       technologies: ["React", "Next.js", "Tailwind CSS"],
-      liveUrl: "https://furtuconstruction.com",
-      githubUrl: "https://github.com/Besu-lemma/Furtuu",
+      liveUrl: "https://olanaconstruction.com/",
+      githubUrl: "https://github.com/Besu-lemma/olana-construction",
       featured: true,
       isMobileApp: false,
     },
     {
       id: 2,
-      title: "Ethio Exchange (In Development)",
+      title: "Ethio Exchange",
       description:
         "A currency exchange platform under development to provide real-time exchange rates, conversion tools, and market analysis for Ethiopian currency and others.",
       image: project4,
@@ -56,7 +56,7 @@ const Projects = () => {
       images: [project3], // example images
       technologies: ["Flutter", "Dart", "Firebase"],
       liveUrl: "",
-      githubUrl: "https://github.com/yourusername/task-management-app",
+      githubUrl: "https://github.com/Besu-lemma/task-management-app",
       featured: false,
       isMobileApp: true,
     },

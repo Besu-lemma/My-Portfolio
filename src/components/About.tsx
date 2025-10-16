@@ -205,45 +205,34 @@ export default function About() {
             </motion.div>
 
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl relative">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-                Hi there! I'm a Computer Science graduate with a deep passion
-                for turning ideas into digital solutions.
-              </h3>
-              <div className="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed">
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                  With a solid foundation in both theory and practice, I’ve
-                  focused on building full-stack web applications using
-                  technologies like React, Next.js, Node.js, MongoDB, and
-                  Firebase. I love creating intuitive user interfaces backed by
-                  efficient, scalable logic.
-                </motion.p>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.8, delay: 1 }}
-                >
-                  Outside of building apps, I’m constantly exploring new tools,
-                  frameworks, and design principles. I enjoy participating in
-                  tech projects, collaborating with others, and staying
-                  up-to-date with the ever-evolving world of software
-                  development.
-                </motion.p>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                >
-                  I believe great code is clean, maintainable, and impactful.
-                  Whether it’s solving real-world problems or crafting seamless
-                  user experiences, I’m always excited to learn, build, and
-                  innovate.
-                </motion.p>
-              </div>
-            </div>
+  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+    Hey! I'm a Computer Science graduate passionate about crafting smart, modern digital experiences.
+  </h3>
+  <div className="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed">
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.8, delay: 0.8 }}
+    >
+      I specialize in building full-stack web apps using React, Next.js, Node.js, and MongoDB — turning ideas into clean, scalable solutions.
+    </motion.p>
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.8, delay: 1 }}
+    >
+      I love exploring new tech, improving user experiences, and collaborating on projects that make a real impact.
+    </motion.p>
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.8, delay: 1.2 }}
+    >
+      For me, great code is simple, elegant, and built to last.
+    </motion.p>
+  </div>
+</div>
+
           </motion.div>
 
           <motion.div

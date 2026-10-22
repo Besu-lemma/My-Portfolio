@@ -1,224 +1,159 @@
 import { useState } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, X } from "lucide-react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import project1 from "@/assets/project-1.png";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.png";
-import auth from "@/assets/auth.png";
-import home from "@/assets/home.jpg";
-import home1 from "@/assets/home1.jpg";
-import controller from "@/assets/controller.png";
-import pin from "@/assets/pin.png";
-const Projects = () => {
-  const [activeProjectImages, setActiveProjectImages] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+import SectionHeader from "@/components/SectionHeader";
+import SectionShell from "@/components/effects/SectionShell";
+import CaseStudy from "@/components/CaseStudy";
+import { caseStudies, selectedBuilds, type SelectedBuild } from "@/data/projects";
 
-  const projects = [
-    {
-      id: 1,
-      title: "Olana Construction Website",
-      description:
-        "A dynamic website for Olana Construction company to showcase their services and projects with a clean and professional design.",
-      image: project1,
-      technologies: ["React", "Next.js", "Tailwind CSS"],
-      liveUrl: "https://olanaconstruction.com/",
-      githubUrl: "https://github.com/Besu-lemma/olana-construction",
-      featured: true,
-      isMobileApp: false,
-    },
-    {
-      id: 2,
-      title: "Ethio Exchange",
-      description:
-        "A currency exchange platform under development to provide real-time exchange rates, conversion tools, and market analysis for Ethiopian currency and others.",
-      image: project4,
-      technologies: [
-        "Flutter",
-        "react",
-        "tailwind css",
-        "Dart",
-        "Express js",
-        "Node.js",
-        "MongoDB",
-      ],
-      liveUrl: "https://ethio-xchange.vercel.app/",
-      githubUrl: "https://github.com/Besu-lemma/Ethio-Xchange",
-      featured: false,
-      isMobileApp: false,
-    },
-    {
-      id: 3,
-      title: "Task Management App",
-      description:
-        "A task management app that supports collaboration, task tracking, and productivity enhancement with intuitive UI and real-time updates.",
-      image: project3,
-      images: [project3], // example images
-      technologies: ["Flutter", "Dart", "Firebase"],
-      liveUrl: "",
-      githubUrl: "https://github.com/Besu-lemma/task-management-app",
-      featured: false,
-      isMobileApp: true,
-    },
-    {
-      id: 4,
-      title: "Smart Irrigation App",
-      description:
-        "A smart irrigation mobile app integrated with IoT devices, providing soil moisture monitoring, local language support, and AI-based recommendations for Ethiopian farmers.",
-      image: home,
-      images: [home1, controller, auth, pin], // example images
-      technologies: ["Flutter", "Dart", "Firebase", "IoT"],
-      liveUrl: "",
-      githubUrl: "https://github.com/Besu-lemma/Smart_Irrigation_app",
-      featured: true,
-      isMobileApp: true,
-    },
-  ];
+export default function Projects() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const reduceMotion = useReducedMotion();
+  const [gallery, setGallery] = useState<string[] | null>(null);
 
-  const handleLiveDemoClick = (project) => {
-    if (project.isMobileApp && project.images?.length > 0) {
-      setActiveProjectImages(project.images);
-      setShowModal(true);
-    } else if (project.liveUrl) {
-      window.open(project.liveUrl, "_blank");
+  const openBuild = (build: SelectedBuild) => {
+    if (build.isMobileApp && build.images?.length) {
+      setGallery(build.images);
+      return;
+    }
+    if (build.liveUrl) {
+      window.open(build.liveUrl, "_blank", "noopener,noreferrer");
     }
   };
 
   return (
-    <section id="projects" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-            Featured Projects
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A showcase of my recent work and passion projects that demonstrate
-            my skills in full-stack development
+    <SectionShell id="work" variant="beams">
+      <div ref={ref}>
+        <SectionHeader
+          index="04 / Work"
+          title="Engineering case studies"
+          description="Full-stack products first (coffee training app and LMS, kept separate), then ERP systems work, then selected public builds."
+        />
+
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.45 }}
+          className="space-y-3 mb-16"
+        >
+          {caseStudies.map((study, i) => (
+            <CaseStudy key={study.id} study={study} defaultOpen={i === 0} />
+          ))}
+        </motion.div>
+
+        <div className="mb-8">
+          <h3 className="font-display text-xl font-semibold mb-1">
+            Selected builds
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Public projects with screenshots or deployed demos.
           </p>
         </div>
 
-        <div className="grid gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`glass rounded-2xl overflow-hidden hover-lift group ${
-                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              } flex flex-col lg:flex`}
+        <div className="grid sm:grid-cols-2 gap-4">
+          {selectedBuilds.map((build) => (
+            <article
+              key={build.id}
+              className="border border-border bg-card/80 backdrop-blur-sm overflow-hidden group flex flex-col transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_40px_-12px_hsl(var(--primary)/0.35)]"
             >
-              {/* Project Image */}
-              <div className="lg:w-1/2 relative overflow-hidden">
+              <div className="aspect-[16/10] overflow-hidden border-b border-border bg-muted relative">
                 <img
-                  src={project.image}
-                  alt={project.title}
+                  src={build.image}
+                  alt={`${build.title} preview`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-64 lg:h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-background/70 via-transparent to-transparent"
+                  aria-hidden
+                />
               </div>
-
-              {/* Project Content */}
-              <div className="lg:w-1/2 p-8 flex flex-col justify-center">
-                <div className="mb-4">
-                  {project.featured && (
-                    <span className="inline-block bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium mb-3">
-                      Featured
+              <div className="p-5 flex flex-col flex-1">
+                <h4 className="font-display text-lg font-semibold mb-2">
+                  {build.title}
+                </h4>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+                  {build.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {build.technologies.map((t) => (
+                    <span key={t} className="tech-tag">
+                      {t}
                     </span>
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  {(build.liveUrl || build.isMobileApp) && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="rounded-sm border-border"
+                      onClick={() => openBuild(build)}
+                    >
+                      <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                      {build.isMobileApp ? "Screenshots" : "Live"}
+                    </Button>
                   )}
-                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Technologies */}
-                <div className="mb-6">
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="glass px-3 py-1 rounded-full text-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-4">
-                  <Button
-                    size="sm"
-                    className="group/btn"
-                    onClick={() => handleLiveDemoClick(project)}
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
-                    Live Demo
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => window.open(project.githubUrl, "_blank")}
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    Code
-                  </Button>
+                  {build.githubUrl && (
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="rounded-sm"
+                      onClick={() =>
+                        window.open(build.githubUrl, "_blank", "noopener,noreferrer")
+                      }
+                    >
+                      <Github className="mr-1.5 h-3.5 w-3.5" />
+                      Code
+                    </Button>
+                  )}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-6">
-            Want to see more of my work?
-          </p>
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() =>
-              window.open(
-                "https://github.com/Besu-lemma?tab=repositories",
-                "_blank"
-              )
-            }
-            className="hover-lift"
-          >
-            <Github className="mr-2 h-5 w-5" />
-            View All Projects on GitHub
-          </Button>
         </div>
       </div>
 
-      {/* Modal for mobile app gallery */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto relative p-6">
+      {gallery && (
+        <div
+          className="fixed inset-0 z-50 bg-background/90 backdrop-blur-sm flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="App screenshots"
+          onClick={() => setGallery(null)}
+        >
+          <div
+            className="bg-card border border-border max-w-3xl w-full max-h-[90vh] overflow-y-auto relative p-5"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              className="absolute top-3 right-4 text-2xl text-gray-500 hover:text-red-500"
-              onClick={() => setShowModal(false)}
+              type="button"
+              className="absolute top-3 right-3 p-1.5 text-muted-foreground hover:text-foreground"
+              onClick={() => setGallery(null)}
+              aria-label="Close screenshots"
             >
-              &times;
+              <X className="h-5 w-5" />
             </button>
-            <h2 className="text-lg font-bold mb-4">App Screenshots</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {activeProjectImages.map((img, i) => (
+            <h2 className="font-display text-lg font-semibold mb-4 pr-8">
+              App screenshots
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {gallery.map((img, i) => (
                 <img
                   key={i}
                   src={img}
                   alt={`Screenshot ${i + 1}`}
-                  className="rounded-md w-full object-cover"
+                  className="w-full object-cover border border-border"
                 />
               ))}
             </div>
           </div>
         </div>
       )}
-    </section>
+    </SectionShell>
   );
-};
-
-export default Projects;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Besufikad Lemma — Software Engineer & Full-Stack Developer",
+  "short_name": "Besufikad Lemma",
+  "description": "Software engineer focused on full-stack products, ERP systems, and applied AI/ML.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f7f5",
+  "theme_color": "#ff843e",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,280 +1,117 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import {
-  Code,
-  Coffee,
-  Heart,
-  Zap,
-  Award,
-  Users,
-  Clock,
-  Star,
-  User,
-} from "lucide-react";
-
-// Animated counter component
-const AnimatedCounter = ({
-  end,
-  duration = 2,
-  suffix = "",
-}: {
-  end: number;
-  duration?: number;
-  suffix?: string;
-}) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (isInView) {
-      let startTime: number;
-      const animate = (currentTime: number) => {
-        if (!startTime) startTime = currentTime;
-        const progress = Math.min(
-          (currentTime - startTime) / (duration * 1000),
-          1
-        );
-        setCount(Math.floor(progress * end));
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
-      requestAnimationFrame(animate);
-    }
-  }, [isInView, end, duration]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-};
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import SectionHeader from "@/components/SectionHeader";
+import SectionShell from "@/components/effects/SectionShell";
+import MovingBorder from "@/components/effects/MovingBorder";
+import { site } from "@/data/site";
+import pro from "@/assets/pro.png";
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const stats = [
-    { icon: Award, label: "Years Experience", value: 1, suffix: "+" },
-    { icon: Users, label: "Projects Completed", value: 50, suffix: "+" },
-    { icon: Clock, label: "Hours Coded", value: 17533, suffix: "+" },
-    { icon: Star, label: "Client Rating", value: 4, suffix: "/5" },
-  ];
-
-  const interests = [
-    {
-      icon: Code,
-      title: "Clean Code",
-      description: "Writing maintainable and scalable code",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: Zap,
-      title: "Performance",
-      description: "Optimizing for speed and efficiency",
-      color: "from-yellow-500 to-orange-500",
-    },
-    {
-      icon: Heart,
-      title: "User Experience",
-      description: "Creating intuitive and delightful interfaces",
-      color: "from-pink-500 to-rose-500",
-    },
-    {
-      icon: Coffee,
-      title: "Continuous Learning",
-      description: "Always exploring new technologies",
-      color: "from-purple-500 to-indigo-500",
-    },
-  ];
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section
-      id="about"
-      className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
-    >
-      {/* Background decorations */}
-      <div className="absolute inset-0">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 60,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-          className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-r from-blue-400/5 to-purple-400/5 rounded-full blur-3xl"
+    <SectionShell id="practice" variant="aurora">
+      <div ref={ref}>
+        <SectionHeader
+          index="02 / Practice"
+          title="How I work"
+          description="Software engineering first—full-stack products, business systems, and applied AI/ML curiosity—tied together by understanding the problem, then shipping maintainable code."
         />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{
-            duration: 45,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-          className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-r from-green-400/5 to-blue-400/5 rounded-full blur-3xl"
-        />
-      </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.45 }}
+          className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block p-2 bg-blue-100 dark:bg-blue-900 rounded-full mb-4"
-          >
-            <User className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-          </motion.div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            About Me
-          </h2>
-          <motion.div
-            initial={{ width: 0 }}
-            animate={isInView ? { width: 80 } : { width: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"
-          />
-        </motion.div>
+          <div className="lg:col-span-5 order-1">
+            <MovingBorder className="h-full rounded-sm" duration={8}>
+              <figure className="h-full flex flex-col">
+                <div className="relative flex-1 min-h-[280px] sm:min-h-[340px] lg:min-h-[380px] overflow-hidden bg-muted">
+                  <img
+                    src={pro}
+                    alt="Besufikad Lemma"
+                    className="absolute inset-0 w-full h-full object-cover object-[center_20%]"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent"
+                    aria-hidden
+                  />
+                  <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+                    <div>
+                      <p className="font-display text-sm font-semibold text-foreground">
+                        {site.name}
+                      </p>
+                      <p className="font-mono-meta text-[10px] text-muted-foreground">
+                        Addis Ababa
+                      </p>
+                    </div>
+                    <span className="status-chip backdrop-blur-sm">verified</span>
+                  </div>
+                </div>
+                <figcaption className="px-4 py-3 border-t border-border flex justify-between items-center bg-card">
+                  <span className="font-mono-meta text-[10px] tracking-wider text-muted-foreground">
+                    02 · portrait.frame
+                  </span>
+                  <span className="font-mono-meta text-[10px] text-primary tracking-wider">
+                    SE · FS · AI
+                  </span>
+                </figcaption>
+              </figure>
+            </MovingBorder>
+          </div>
 
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 hover-lift md:grid-cols-4 gap-6 mb-16"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={
-                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
-              }
-              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-              className="text-center  p-6  bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all  duration-300 group"
-            >
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="inline-block p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4 group-hover:shadow-lg transition-all duration-300"
-              >
-                <stat.icon className="h-6 w-6 text-white" />
-              </motion.div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-              </div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                {stat.label}
+          <div className="lg:col-span-7 order-2 flex flex-col justify-center">
+            <div className="border border-border/80 bg-card/70 backdrop-blur-md p-6 sm:p-8 h-full flex flex-col justify-center space-y-5 shadow-[0_0_60px_-24px_hsl(var(--primary)/0.2)]">
+              <p className="font-mono-meta text-[10px] uppercase tracking-widest text-primary">
+                Operating model
               </p>
-            </motion.div>
-          ))}
+              <p className="text-muted-foreground leading-relaxed">
+                I work as a software engineer across the stack: React and Node.js
+                products on MERN, solid API and data modeling, and shipping features
+                teams can operate. ERP (Odoo / ERPNext) is a strong domain where I
+                also customize modules, integrations, and reporting—not the only
+                story.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                With a B.Sc. in Computer Science, I treat applied AI and ML as tools
+                for real products—data-driven recommendations, automation, and
+                smarter workflows—without overclaiming research credentials I do
+                not hold.
+              </p>
+
+              <div className="pt-5 border-t border-border grid sm:grid-cols-2 gap-5">
+                <div className="rounded-sm border border-border/60 bg-background/60 p-4">
+                  <p className="font-mono-meta text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">
+                    Education
+                  </p>
+                  <p className="font-display font-semibold text-foreground text-sm sm:text-base">
+                    {site.education.degree}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {site.education.school} · {site.education.period}
+                  </p>
+                </div>
+                <div className="rounded-sm border border-border/60 bg-background/60 p-4">
+                  <p className="font-mono-meta text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">
+                    Based in
+                  </p>
+                  <p className="font-display font-semibold text-foreground text-sm sm:text-base">
+                    {site.location}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Open to software, product, and systems work
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative"
-          >
-            {/* Floating elements */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-              className="absolute -top-4 -right-4 text-4xl"
-            >
-              🚀
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{
-                duration: 3,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: 1,
-              }}
-              className="absolute -bottom-4 -left-4 text-3xl"
-            >
-              💡
-            </motion.div>
-
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl relative">
-  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-    Hey! I'm a Computer Science graduate passionate about crafting smart, modern digital experiences.
-  </h3>
-  <div className="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed">
-    <motion.p
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8, delay: 0.8 }}
-    >
-      I specialize in building full-stack web apps using React, Next.js, Node.js, and MongoDB — turning ideas into clean, scalable solutions.
-    </motion.p>
-    <motion.p
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8, delay: 1 }}
-    >
-      I love exploring new tech, improving user experiences, and collaborating on projects that make a real impact.
-    </motion.p>
-    <motion.p
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8, delay: 1.2 }}
-    >
-      For me, great code is simple, elegant, and built to last.
-    </motion.p>
-  </div>
-</div>
-
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6 hover-lift glass"
-          >
-            {interests.map((interest, index) => (
-              <motion.div
-                key={interest.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={
-                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                }
-                transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
-              >
-                {/* Gradient background on hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${interest.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-                />
-
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  className={`inline-block p-3 bg-gradient-to-r ${interest.color} rounded-lg mb-4 shadow-lg`}
-                >
-                  <interest.icon className="h-6 w-6 text-white" />
-                </motion.div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
-                  {interest.title}
-                </h4>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  {interest.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

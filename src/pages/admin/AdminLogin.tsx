@@ -63,9 +63,6 @@ export default function AdminLogin() {
             Enter
           </Button>
         </form>
-        <p className="mt-4 text-[11px] text-muted-foreground font-mono-meta">
-          Default: admin · override with VITE_ADMIN_PASSWORD
-        </p>
       </div>
     </div>
   );

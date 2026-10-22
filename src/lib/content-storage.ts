@@ -63,7 +63,7 @@ export function setAdminAuthed(value: boolean) {
 }
 
 export function getAdminPassword() {
-  return import.meta.env.VITE_ADMIN_PASSWORD || "admin";
+  return import.meta.env.ADMIN_PASSWORD || "admin";
 }
 
 export function newId(prefix: string) {

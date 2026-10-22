@@ -5,6 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Expose ADMIN_PASSWORD to the client (Vite defaults to VITE_ only)
+  envPrefix: ["VITE_", "ADMIN_"],
   server: {
     host: "::",
     port: 8080,

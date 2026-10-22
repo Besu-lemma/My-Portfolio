@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import SystemDiagram from "@/components/SystemDiagram";
 import SectionBackground from "@/components/effects/SectionBackground";
 import MovingBorder from "@/components/effects/MovingBorder";
-import { site } from "@/data/site";
+import { useContent } from "@/context/ContentContext";
 
 export default function Hero() {
+  const { site } = useContent();
   const reduceMotion = useReducedMotion();
 
   const scrollTo = (id: string) => {

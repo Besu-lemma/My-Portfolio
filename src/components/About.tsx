@@ -3,10 +3,11 @@ import { useRef } from "react";
 import SectionHeader from "@/components/SectionHeader";
 import SectionShell from "@/components/effects/SectionShell";
 import MovingBorder from "@/components/effects/MovingBorder";
-import { site } from "@/data/site";
+import { useContent } from "@/context/ContentContext";
 import pro from "@/assets/pro.png";
 
 export default function About() {
+  const { site } = useContent();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const reduceMotion = useReducedMotion();

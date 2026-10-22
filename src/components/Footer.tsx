@@ -1,7 +1,8 @@
-import { site } from "@/data/site";
 import SectionBackground from "@/components/effects/SectionBackground";
+import { useContent } from "@/context/ContentContext";
 
 const Footer = () => {
+  const { site } = useContent();
   const currentYear = new Date().getFullYear();
 
   return (

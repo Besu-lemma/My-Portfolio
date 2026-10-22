@@ -8,7 +8,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { site } from "@/data/site";
+import { useContent } from "@/context/ContentContext";
 import {
   Download,
   Github,
@@ -27,6 +27,8 @@ type Props = {
 };
 
 export default function CommandPalette({ open, onOpenChange }: Props) {
+  const { site } = useContent();
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {

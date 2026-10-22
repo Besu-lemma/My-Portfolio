@@ -16,9 +16,10 @@ import {
 import SectionHeader from "@/components/SectionHeader";
 import SectionShell from "@/components/effects/SectionShell";
 import MovingBorder from "@/components/effects/MovingBorder";
-import { site } from "@/data/site";
+import { useContent } from "@/context/ContentContext";
 
 export default function Contact() {
+  const { site } = useContent();
   const [formData, setFormData] = useState({
     name: "",
     email: "",

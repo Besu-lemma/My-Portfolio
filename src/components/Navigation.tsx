@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { Menu, X, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
-import { site } from "@/data/site";
+import { useContent } from "@/context/ContentContext";
 
 type Props = {
   onOpenCommand?: () => void;
 };
 
 const Navigation = ({ onOpenCommand }: Props) => {
+  const { site } = useContent();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
@@ -31,7 +32,7 @@ const Navigation = ({ onOpenCommand }: Props) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [site.nav]);
 
   const scrollToSection = (href: string) => {
     const id = href.replace("#", "");

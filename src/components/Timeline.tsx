@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import type { ExperienceItem } from "@/data/experience";
+import type { ExperienceItem } from "@/types/content";
 import MovingBorder from "@/components/effects/MovingBorder";
 
 type Props = {

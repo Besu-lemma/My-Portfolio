@@ -2,9 +2,10 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import SectionHeader from "@/components/SectionHeader";
 import SectionShell from "@/components/effects/SectionShell";
-import { capabilities } from "@/data/capabilities";
+import { useContent } from "@/context/ContentContext";
 
 export default function Skills() {
+  const { capabilities } = useContent();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const reduceMotion = useReducedMotion();

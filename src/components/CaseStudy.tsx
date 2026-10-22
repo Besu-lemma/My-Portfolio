@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import type { CaseStudy as CaseStudyType } from "@/data/projects";
+import type { CaseStudy as CaseStudyType } from "@/types/content";
 
 type Props = {
   study: CaseStudyType;

@@ -3,9 +3,10 @@ import { useRef } from "react";
 import SectionHeader from "@/components/SectionHeader";
 import SectionShell from "@/components/effects/SectionShell";
 import Timeline from "@/components/Timeline";
-import { experience } from "@/data/experience";
+import { useContent } from "@/context/ContentContext";
 
 export default function Experience() {
+  const { experience } = useContent();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const reduceMotion = useReducedMotion();

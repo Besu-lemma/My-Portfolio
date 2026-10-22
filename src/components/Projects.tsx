@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/SectionHeader";
 import SectionShell from "@/components/effects/SectionShell";
 import CaseStudy from "@/components/CaseStudy";
-import { caseStudies, selectedBuilds, type SelectedBuild } from "@/data/projects";
+import { useContent } from "@/context/ContentContext";
+import type { SelectedBuild } from "@/types/content";
 
 export default function Projects() {
+  const { caseStudies, selectedBuilds } = useContent();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const reduceMotion = useReducedMotion();
